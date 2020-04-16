@@ -5,6 +5,8 @@ import SearchModel from '../models/SearchModel.js'
 
 const tag = '[MainController]'
 
+// reset 버튼을 클릭했을 때 결과 화면이 지워지기
+// 글자를 모두 지워도(검색어) 결과 화면이 지워지기
 export default {
   init() {
     FormView.setup(document.querySelector('form'))
@@ -20,7 +22,10 @@ export default {
   },
 
   onResetForm() {
-    console.log(tag, 'onResetForm()')
+    // ResultView.render('RESET');
+    // View.js에 있는 hide 메서드 사용.
+    // 그냥 안보이게 숨기는 건 생각해보지 못한 방법..! (display:none)
+    ResultView.hide();
   },
 
   search(query) {

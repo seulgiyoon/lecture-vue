@@ -5,7 +5,8 @@ const tag = '[ResultView]'
 const ResultView = Object.create(View)
 
 ResultView.messages = {
-  NO_RESULT: '검색 결과가 없습니다'
+  NO_RESULT: '검색 결과가 없습니다',
+  // RESET: '',
 }
 
 ResultView.setup = function (el) {
@@ -14,7 +15,15 @@ ResultView.setup = function (el) {
 
 ResultView.render = function (data = []) {
   console.log(tag, 'render()', data)
-  this.el.innerHTML = data.length ? this.getSearchResultsHtml(data) : this.messages.NO_RESULT
+
+  // this.el.innerHTML = 
+  //   data.length ? 
+  //   data === 'RESET' ? 
+  //     this.messages[data] 
+  //     : this.getSearchResultsHtml(data) 
+  //     : this.messages.NO_RESULT
+
+  this.el.innerHTML = data.length ? this.getSearchResultsHtml(data) : this.messages.NO_RESULT;
   this.show()
 }
 
