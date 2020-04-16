@@ -18,8 +18,19 @@ ResultView.render = function (data = []) {
   this.show()
 }
 
+// 이부분도 따로 함수로 만들어줌.
+ResultView.getSearchItemHtml = function(item) {
+  return `<li>
+    <img src="${item.image}">
+    <p>${item.name}</p>
+  </li>`;
+}
+
 ResultView.getSearchResultsHtml = function (data) {
-  debugger
+  return data.reduce((html, item) => {
+    html = html + this.getSearchItemHtml(item);
+    return html;
+  }, '<ul>') + '</ul>';
 }
 
 export default ResultView
