@@ -13,6 +13,7 @@ export default {
       .on('@reset', e => this.onResetForm())
 
     TabView.setup(document.querySelector('#tabs'))
+      .on('@change', e => this.onChangeTab(e.detail.tabName))
 
     ResultView.setup(document.querySelector('#search-result'))
 
@@ -26,6 +27,19 @@ export default {
 
     ResultView.hide()
   },
+
+  onChangeTab(tabName) {
+    console.log('called')
+  },
+
+  // onChangeTab(tabName) {
+  //   if (tabName === '추천 검색어') {
+  //     console.log('recommend');
+  //   } else if (tabName === '최근 검색어') {
+  //     console.log('recent');
+  //   }
+  // },
+
 
   search(query) {
     SearchModel.list(query).then(data => {
