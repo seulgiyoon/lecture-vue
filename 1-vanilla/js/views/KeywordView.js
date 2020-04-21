@@ -35,6 +35,10 @@ KeywordView.bindClickEvent = function () {
 KeywordView.onClickKeyword = function (e) {
   const { keyword } = e.currentTarget.dataset
   this.emit('@click', { keyword })
+  // this.emit('@input', { keyword })
 }
 
 export default KeywordView
+
+// 검색폼에 선택된 검색어를 입력시킨다.
+// onClick키워드에 @

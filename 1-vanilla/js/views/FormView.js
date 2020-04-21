@@ -17,6 +17,11 @@ FormView.showResetBtn = function (show = true) {
   this.resetEl.style.display = show ? 'block' : 'none'
 }
 
+FormView.setValue = function (input = '') {
+  this.inputEl.value = input;
+  FormView.showResetBtn(this.inputEl.value.length);
+}
+
 FormView.bindEvents = function () {
   this.on('submit', e => e.preventDefault())
   this.inputEl.addEventListener('keyup', e => this.onKeyup(e))

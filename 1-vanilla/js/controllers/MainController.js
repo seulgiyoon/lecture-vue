@@ -19,6 +19,7 @@ export default {
 
     KeywordView.setup(document.querySelector('#search-keyword'))
       .on('@click', e => this.onClickKeyword(e.detail.keyword))
+      // .on('@input', e => this.onSubmitKeyword(e.detail.keyword))
 
     ResultView.setup(document.querySelector('#search-result'))
 
@@ -46,6 +47,9 @@ export default {
   },
 
   search(query) {
+    // 여기에 검색창 value를 클릭한 검색어로 바꾸는 부분 추가.
+    // 여기가 가장 적당한 곳인건가?
+    FormView.setValue(query);
     SearchModel.list(query).then(data => {
       this.onSearchResult(data)
     })
@@ -58,7 +62,8 @@ export default {
 
   onResetForm() {
     console.log(tag, 'onResetForm()')
-    ResultView.hide()
+    // 이미 작성한 코드 중 사용할 수 있는 코드가 없는지 우선 살펴보자
+    this.renderView()
   },
 
   onSearchResult(data) {
@@ -73,5 +78,9 @@ export default {
 
   onClickKeyword(keyword) {
     this.search(keyword)
-  }
+  },
+
+  // onSubmitKeyword(keyword) {
+  //   FormView.setInput(keyword);
+  // }
 }
