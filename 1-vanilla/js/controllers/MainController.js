@@ -24,6 +24,7 @@ export default {
 
     HistoryView.setup(document.querySelector('#search-history'))
       .on('@click', e => this.onClickHistory(e.detail.keyword))
+      .on('@remove', e => this.onRemoveHistory(e.detail.keyword))
 
     ResultView.setup(document.querySelector('#search-result'))
 
@@ -46,6 +47,11 @@ export default {
     ResultView.hide()
   },
 
+  onRemoveHistory(keyword) {
+    HistoryModel.remove(keyword);
+    this.renderView();
+  },
+
   fetchSearchKeyword() {
     KeywordModel.list().then(data => {
       KeywordView.render(data)
@@ -54,7 +60,9 @@ export default {
 
   fetchSearchHistory() {
     HistoryModel.list().then(data => {
-      HistoryView.render(data).bindRemoveBtn()
+      // .render에서 this를 리턴하여 함수 체이닝
+      HistoryView.render(data).bindRemoveBtn();
+      // HistoryView.render(data)
     })
   },
 
