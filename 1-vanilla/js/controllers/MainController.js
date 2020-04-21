@@ -61,6 +61,8 @@ export default {
 
   search(query) {
     FormView.setValue(query)
+    // search 함수가 실행될 때 무조건 최근 검색어 목록에 검색어가 추가되므로 이곳에 add 함수를 더한다
+    HistoryModel.add(query)
     SearchModel.list(query).then(data => {
       this.onSearchResult(data)
     })
