@@ -18,6 +18,8 @@ export default {
       .on('@change', e => this.onChangeTab(e.detail.tabName))
 
     KeywordView.setup(document.querySelector('#search-keyword'))
+    //  .on('@submit', e => this.onSubmit(e.detail.input))
+    .on('@click', e => this.onClickKeyword(e.detail.keyword))
 
     ResultView.setup(document.querySelector('#search-result'))
 
@@ -60,7 +62,10 @@ export default {
     ResultView.hide()
   },
 
+  // 결과목록을 렌더하는 함수에서 탭뷰와 키워드뷰를 숨기기. 뷰에 관련된거니까 여기서 처리
   onSearchResult(data) {
+    TabView.hide();
+    KeywordView.hide();
     ResultView.render(data)
   },
 
@@ -68,4 +73,8 @@ export default {
     debugger
   },
 
+  // onSubmit과 같은 역할이지만 키워드 뷰를 따로 함수로 만든다.
+  onClickKeyword(keyword) {
+    this.search(keyword);
+  }
 }
